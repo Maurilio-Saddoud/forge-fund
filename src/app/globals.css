@@ -1,26 +1,115 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06070b;
+  --foreground: #f4f5f7;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: color-mix(in oklab, white 14%, transparent);
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  font-family: var(--font-space-grotesk), ui-sans-serif, system-ui;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.03em;
+}
+
+.hero-glow {
+  position: absolute;
+  inset: -35% -10% auto auto;
+  width: 56rem;
+  height: 56rem;
+  background: radial-gradient(circle at center, rgba(35, 211, 238, 0.22), rgba(35, 211, 238, 0.02) 45%, transparent 70%);
+  filter: blur(24px);
+  animation: drift 12s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translate3d(-3%, 4%, 0) scale(1.05);
+    opacity: 1;
+  }
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(8, 10, 16, 0.84);
+  padding: 0.78rem 0.95rem;
+  color: #f5f7ff;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+.field:focus {
+  border-color: rgba(104, 223, 255, 0.66);
+  box-shadow: 0 0 0 3px rgba(50, 200, 255, 0.18);
+  background: rgba(10, 13, 21, 0.95);
+}
+
+.amount-btn {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.55rem 0.8rem;
+  font-size: 0.9rem;
+  transition: all 180ms ease;
+}
+
+.amount-btn:hover {
+  border-color: rgba(104, 223, 255, 0.5);
+  background: rgba(104, 223, 255, 0.1);
+}
+
+.cta-primary,
+.cta-secondary {
+  border-radius: 0.85rem;
+  padding: 0.82rem 1rem;
+  font-weight: 600;
+  transition: all 220ms ease;
+}
+
+.cta-primary {
+  background: linear-gradient(140deg, #f8fafc, #d7dee7);
+  color: #0a0d14;
+}
+
+.cta-primary:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.cta-secondary {
+  border: 1px solid rgba(103, 223, 255, 0.52);
+  background: rgba(89, 211, 255, 0.1);
+  color: #dff8ff;
+}
+
+.cta-secondary:hover {
+  background: rgba(89, 211, 255, 0.18);
 }
