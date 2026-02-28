@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
@@ -26,11 +27,8 @@ const principles = [
   },
 ];
 
-const stats = [
-  ["$2,400", "Annual scholarship value"],
-  ["1 Plan", "Per recipient"],
-  ["Global", "Any age, any country"],
-];
+const ANNUAL_PLAN_USD = 2400;
+const WINNER_ANNOUNCEMENT_DATE = new Date("2026-07-15T00:00:00");
 
 const faqItems = [
   { id: "who", question: "Who can apply?", answer: "Any age, any country, as long as you're actively building and shipping." },
@@ -39,6 +37,37 @@ const faqItems = [
 ];
 
 export default function Home() {
+  const [fundsRaised, setFundsRaised] = useState(18450);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const ticker = setInterval(() => {
+      setFundsRaised((current) => current + Math.floor(Math.random() * 40));
+    }, 5500);
+
+    const clock = setInterval(() => {
+      setNow(new Date());
+    }, 60000);
+
+    return () => {
+      clearInterval(ticker);
+      clearInterval(clock);
+    };
+  }, []);
+
+  const scholarshipsAvailable = Math.floor(fundsRaised / ANNUAL_PLAN_USD);
+
+  const daysLeft = useMemo(() => {
+    const ms = WINNER_ANNOUNCEMENT_DATE.getTime() - now.getTime();
+    return Math.max(0, Math.ceil(ms / (1000 * 60 * 60 * 24)));
+  }, [now]);
+
+  const liveStats = [
+    [`$${fundsRaised.toLocaleString()}`, "Total funds raised"],
+    [scholarshipsAvailable.toString(), "Scholarships available"],
+    [`${daysLeft} days`, "Until winners announced"],
+  ];
+
   return (
     <div className="relative min-h-screen bg-[#fcfcfd] selection:bg-sky-200/50 selection:text-sky-900 overflow-x-hidden">
       {/* Background Layer */}
@@ -125,13 +154,16 @@ export default function Home() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="mt-20 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto"
             >
-              {stats.map(([value, label], i) => (
+              {liveStats.map(([value, label], i) => (
                 <Card key={label} delay={0.4 + (i * 0.1)} className="text-center py-8">
-                  <p className="text-4xl font-bold tracking-tight text-slate-900">{value}</p>
+                  <p className="text-4xl font-bold tracking-tight text-slate-900 tabular-nums">{value}</p>
                   <p className="mt-2 text-sm font-medium text-slate-500 uppercase tracking-widest">{label}</p>
                 </Card>
               ))}
             </motion.div>
+            <p className="mt-4 text-center text-xs uppercase tracking-[0.12em] text-slate-500">
+              Demo metrics • placeholder values with live-style updates
+            </p>
           </Container>
         </section>
 
