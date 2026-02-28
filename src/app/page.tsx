@@ -98,7 +98,7 @@ export default function Home() {
               <Rocket className="h-4 w-4" />
             </div>
             <span className="text-sm font-bold tracking-[0.15em] text-slate-800 uppercase">
-              Forge Fund
+              Ship the Thing
             </span>
           </motion.div>
           
@@ -147,7 +147,7 @@ export default function Home() {
               </h1>
               
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-slate-600 md:text-xl md:leading-relaxed">
-                Forge Fund removes tooling cost barriers. We fund annual Claude Code or Codex Max plans for high-conviction builders ready to turn potential into product.
+                Ship the Thing removes tooling cost barriers. We fund annual Claude Code or Codex Max plans for high-conviction builders ready to turn potential into product.
               </p>
 
               <div className="mt-10 flex flex-col sm:flex-row items-center gap-4">

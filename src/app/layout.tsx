@@ -14,8 +14,8 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Forge Fund",
-  description: "ship the thing — scholarship fund for Claude Code and Codex Max builders",
+  title: "Ship the Thing",
+  description: "Ship the Thing — scholarship fund for Claude Code and Codex Max builders",
 };
 
 export default function RootLayout({

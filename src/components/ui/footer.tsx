@@ -18,7 +18,7 @@ export function Footer() {
                 </svg>
               </div>
               <span className="text-sm font-bold tracking-[0.15em] text-slate-800 uppercase">
-                Forge Fund
+                Ship the Thing
               </span>
             </Link>
             <p className="max-w-xs text-sm leading-relaxed text-slate-500">
@@ -76,10 +76,10 @@ export function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-200/50 pt-8 sm:flex-row">
           <p className="text-xs text-slate-500">
-            © {new Date().getFullYear()} Forge Fund. All rights reserved.
+            © {new Date().getFullYear()} Ship the Thing. All rights reserved.
           </p>
           <div className="text-xs text-slate-400">
-            Note: Forge Fund is not currently established as a registered non-profit.
+            Note: Ship the Thing is not currently established as a registered non-profit.
           </div>
         </div>
       </Container>

@@ -1,4 +1,4 @@
-# Forge Fund (POC)
+# Ship the Thing (POC)
 
 Tagline: **ship the thing**
 
