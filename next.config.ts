@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  basePath: "/ship-the-thing",
+  assetPrefix: "/ship-the-thing/",
 };
 
 export default nextConfig;
