@@ -9,6 +9,7 @@ import { Card } from "@/components/ui/card";
 import { Accordion } from "@/components/ui/accordion";
 import { ArrowRight, Sparkles, Rocket, Globe } from "lucide-react";
 
+// (Skipped principles and faqItems for brevity here but keeping them in the replace block target exactly below)
 const principles = [
   {
     icon: <Sparkles className="h-6 w-6 text-sky-500" />,
@@ -63,9 +64,21 @@ export default function Home() {
   }, [now]);
 
   const liveStats = [
-    [`$${fundsRaised.toLocaleString()}`, "Total funds raised"],
-    [scholarshipsAvailable.toString(), "Scholarships available"],
-    [`${daysLeft} days`, "Until winners announced"],
+    {
+      value: `$${fundsRaised.toLocaleString()}`, 
+      label: "Total funds raised",
+      context: "Pooled from community donations."
+    },
+    {
+      value: scholarshipsAvailable.toString(), 
+      label: "Scholarships available",
+      context: "$2,400 value per annual plan."
+    },
+    {
+      value: `${daysLeft} days`, 
+      label: "Until winners announced",
+      context: "Global access. Anyone can apply."
+    },
   ];
 
   return (
@@ -148,19 +161,23 @@ export default function Home() {
               </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-              className="mt-20 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto"
-            >
-              {liveStats.map(([value, label], i) => (
-                <Card key={label} delay={0.4 + (i * 0.1)} className="text-center py-8">
-                  <p className="text-4xl font-bold tracking-tight text-slate-900 tabular-nums">{value}</p>
-                  <p className="mt-2 text-sm font-medium text-slate-500 uppercase tracking-widest">{label}</p>
-                </Card>
-              ))}
-            </motion.div>
+              <motion.div 
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+                className="mt-20 grid gap-4 sm:grid-cols-3 max-w-4xl mx-auto"
+              >
+                {liveStats.map(({ value, label, context }, i) => (
+                  <Card key={label} delay={0.4 + (i * 0.1)} className="text-center py-6 flex flex-col justify-center">
+                    <p className="text-4xl font-bold tracking-tight text-slate-900 tabular-nums">{value}</p>
+                    <p className="mt-2 text-sm font-bold text-slate-700 uppercase tracking-widest">{label}</p>
+                    <p className="mt-3 text-xs leading-relaxed text-slate-500 opacity-90 max-w-[240px] mx-auto">
+                      {context}
+                    </p>
+                  </Card>
+                ))}
+              </motion.div>
+            
             <p className="mt-4 text-center text-xs uppercase tracking-[0.12em] text-slate-500">
               Demo metrics • placeholder values with live-style updates
             </p>
